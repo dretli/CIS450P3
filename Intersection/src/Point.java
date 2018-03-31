@@ -3,7 +3,7 @@ public class Point {
 	public int index;
 	Point(int index){
 		this.index = index;
-		//create semphore?
+		//create semaphore?
 	}
 
 	public void obtainLock(int cid){
