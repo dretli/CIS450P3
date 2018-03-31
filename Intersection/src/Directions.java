@@ -18,8 +18,8 @@ public class Directions {
 	//locked points
 
 	Directions(char orig, char targ){
-		dir_original = orig;
-		dir_target = targ;
+		this.dir_original = orig;
+		this.dir_target = targ;
 	}
 	//figure out which points need to be locked based on chart
 	public int[] pointsNeeded(){
