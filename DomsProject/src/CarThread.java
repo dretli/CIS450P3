@@ -1,7 +1,5 @@
 
-import java.util.ArrayList;
-import java.time.LocalTime;
-import java.time.ZoneId;
+
 //O-N, T-N, 0-0, 1-0, 2-0, 2-3, 4-2 (STRAIGHT)
 //O-N, T-E, 0-0, 1-0, 2-0, 4-3 (RIGHT)
 //O-N, T-W, 0-0, 1-0, 3-0, 3-1, 2-2, 4-1 (LEFT)
@@ -17,8 +15,10 @@ import java.time.ZoneId;
 
 public class CarThread extends Thread {
     public Car car;
+    public int sleepTime;
     
     CarThread(Directions dir, int cid, int sleepTime) throws InterruptedException{
+    	this.sleepTime = sleepTime;
         Thread.sleep(sleepTime);    //sleep before creating a new car object
         car = new Car(dir, cid);
         this.start();
@@ -30,7 +30,13 @@ public class CarThread extends Thread {
             // Displaying the thread that is running
             System.out.println("Car Thread "
                     + Thread.currentThread().getId()
-                    + " is running with a cid of: "+ car.cid);
+                    + " is running with a cid of: "+ car.cid
+                    + " Sleep Time is: " + (float)sleepTime/1000);
+            
+//            int[] points = car.dir.pointsNeeded();
+//            for(int i = 0; i < points.length; i++){
+//            	System.out.println(points[i] + " " + points[++i]);
+//            }
 
         } catch (Exception e) {
             // Throwing an exception

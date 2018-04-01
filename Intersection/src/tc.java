@@ -21,14 +21,8 @@ public class tc {
 
     public static void main(String[] args) throws InterruptedException {
         //create intersection
-        ArrayList<ArrayList<Point>> points = new ArrayList<ArrayList<Point>>();
-        for (int i = 0; i < 5; i++) {
-            ArrayList<Point> circleOfPoints = new ArrayList<Point>();
-            for (int j = 0; j < 5; j++) {
-                circleOfPoints.add(new Point(i, j));
-            }
-            points.add(circleOfPoints);
-        }
+    	//create points
+    	Points.createPoints();
 
         //only run when all directions locks are obtained that are needed
         createCarThreads(); //this creates all of the threads, at their appropriate arrival times using Thread.sleep() as an offset
@@ -36,8 +30,10 @@ public class tc {
     }
 
     //this method creates the 8 car threads (hardcoded from assignment details) Each thread will instantiate a car object
-    public static void createCarThreads() throws InterruptedException {
+    @SuppressWarnings("unused")
+	public static void createCarThreads() throws InterruptedException {
         System.out.println("Creating Car Threads Now");
+        Points.setStartTime();//set the start time
         CarThread carThread0 = new CarThread(new Directions('N','N'), 0, 1100);
         CarThread carThread1 = new CarThread(new Directions('N','N'), 1, 2000 - 1100);
         CarThread carThread2 = new CarThread(new Directions('N','W'), 2, 3300 - 2000);
