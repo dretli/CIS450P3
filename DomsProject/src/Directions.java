@@ -21,6 +21,12 @@ public class Directions {
 		this.dir_original = orig;
 		this.dir_target = targ;
 	}
+	
+	//create method to figure out which type of turn it is (Left, Right, Straight)
+	//return the seconds it takes to complete the turn
+	
+	
+	
 	//figure out which points need to be locked based on chart
 	public int[] pointsNeeded(){
 		
