@@ -24,6 +24,66 @@ public class Directions {
 	
 	//create method to figure out which type of turn it is (Left, Right, Straight)
 	//return the seconds it takes to complete the turn
+	//Left = 3; Straight = 2; Right = 1
+	public int turnType(){
+		if(dir_original == 'N'){
+			if(dir_target == 'N'){
+				//O-N, T-N, 0-0, 1-0, 2-0, 2-3, 4-2 (STRAIGHT)
+				return 2;
+			}
+			else if(dir_target == 'E'){
+				//O-N, T-E, 0-0, 1-0, 2-0, 4-3 (RIGHT)
+				return 1;
+			}
+			else if(dir_target == 'W'){
+				//O-N, T-W, 0-0, 1-0, 3-0, 3-1, 2-2, 4-1 (LEFT)
+				return 3;
+			}
+		}
+		else if(dir_original == 'S'){
+			if(dir_target == 'S'){
+				//O-S, T-S, 0-2, 1-2, 2-2, 1-1, 4-0 (STRAIGHT)
+				return 2;
+			}
+			else if(dir_target == 'W'){
+				//O-S, T-W, 0-2, 1-2, 2-2, 4-1 (RIGHT)
+				return 1;
+			}
+			else if(dir_target == 'E'){
+				//O-S, T-E, 0-2, 1-2, 3-2, 3-3, 2-0, 4-3 (LEFT)
+				return 3;
+			}
+		}
+		else if(dir_original == 'E'){
+			if(dir_target == 'E'){
+				//O-E, T-E, 0-1, 1-1, 2-1, 1-0, 4-3 (STRAIGHT)
+				return 2;
+			}
+			else if(dir_target == 'S'){
+				//O-E, T-S, 0-1, 1-1, 2-1, 4-0 (RIGHT)
+				return 1;
+			}
+			else if(dir_target == 'N'){
+				//O-E, T-N, 0-1, 1-1, 3-0, 3-3, 2-3, 4-2 (LEFT)
+				return 3;
+			}
+		}
+		else if(dir_original == 'W'){
+			if(dir_target == 'W'){
+				//O-W, T-W, 0-3, 1-3, 2-3, 1-2, 4-1 (STRAIGHT)
+				return 2;
+			}
+			else if(dir_target == 'N'){
+				//O-W, T-N, 0-3, 1-3, 2-3, 4-2 (RIGHT)
+				return 1;
+			}
+			else if(dir_target == 'S'){
+				//O-W, T-S, 0-3, 1-3, 3-3, 3-0, 2-1, 4-0 (LEFT)
+				return 3;
+			}
+		}
+		return 0;
+	}
 	
 	
 	
