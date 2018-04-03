@@ -27,10 +27,10 @@ public class Car extends Thread {
     public void run() {
 //        try {
         // Displaying the thread that is running
-        System.out.println("Car Thread "
-                + Thread.currentThread().getId()
-                + " is running with a cid of: " + this.cid
-                + " Sleep Time is: " + (float) sleepTime / 1000);
+//        System.out.println("Car Thread "
+//                + Thread.currentThread().getId()
+//                + " is running with a cid of: " + this.cid
+//                + " Sleep Time is: " + (float) sleepTime / 1000);
 
         ArriveIntersection(dir);
         CrossIntersection(dir);
@@ -46,21 +46,25 @@ public class Car extends Thread {
         this.arrivalTime = LocalTime.now(ZoneId.of("America/New_York")); //Car.arrivalTime gets set once ArriveIntersection() is entered.
 
         //print the arrival time, the start time, and their difference
-        System.out.println(arrivalTime + " - " + Points.getStartTime() + " = " + Points.getStartTime().until(arrivalTime, MILLIS));
+//        System.out.println(arrivalTime + " - " + Points.getStartTime() + " = " + Points.getStartTime().until(arrivalTime, MILLIS));
         this.print("arriving");
         //get the points needed,
         //check to see if first point is available (stop sign point) before checking the rest
         //once that one is available check to see if the rest of the points are available
         points = this.dir.pointsNeeded();   //get the neeeded points for the given directions
 
-        for (int i = 0; i < points.length; i++) {
-            points[i].acquireLock(this.cid, this.dir);
+        Points.isNext.acquireLock(this.cid, this.dir); //acquiring the right to go next
+ 
+        points[0].acquireLock(this.cid, this.dir);  //acquire stop sighn
+        
+        for (int i = 1; i < points.length; i++) {         //acquire rest of points
+//          if(points[i].dir.getDir_original() == this.dir.getDir_original() && points[i].dir.getDir_target() == this.dir.getDir_target()){
+            if(points[i].dir.getDir_original() == this.dir.getDir_original() && points[i].noPermit() ){
+                points[i].releaseLock(this.cid);       //stealing a semaphore that has the same directions as this car
+            }
+            points[i].acquireLock(this.cid, this.dir);  
         }
-//        if(Points.points.get(0).get(0).tryAcquire())
-//            System.out.println("SUCCESSFULY ACQUIRED");
-//        else
-//            System.out.println("DENIED BRO");
-//        points[0].acquireLock(this.cid, this.dir);
+
 
     }
 
@@ -68,6 +72,8 @@ public class Car extends Thread {
         // TODO Auto-generated method stub
 
         this.print("crossing");
+        points[0].releaseLock(this.cid);
+        Points.isNext.releaseLock(this.cid);
         try {
             //sleep for the appropriate number of seconds based on the turn type
             //Left = 3; Straight = 2; Right = 1
@@ -79,14 +85,14 @@ public class Car extends Thread {
     }
 
     private void ExitIntersection(Directions dir) {
-        for (int i = 0; i < points.length; i++) {
+        for (int i = 1; i < points.length; i++) {
             points[i].releaseLock(this.cid);
         }
         this.print("exiting");
     }
 
     private void print(String instruction) {
-        System.out.println("Time " + "(insert time)"
+        System.out.println("Time " + Points.getTimeOffset()
                 + ": Car " + this.cid
                 + "(->" + this.dir.getDir_original()
                 + " ->" + this.dir.getDir_target()
