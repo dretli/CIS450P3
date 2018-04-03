@@ -59,6 +59,7 @@ public class Car extends Thread {
         
         for (int i = 1; i < points.length; i++) {         //acquire rest of points
 //          if(points[i].dir.getDir_original() == this.dir.getDir_original() && points[i].dir.getDir_target() == this.dir.getDir_target()){
+//            points[i].numPermits();
             if(points[i].dir.getDir_original() == this.dir.getDir_original() && points[i].noPermit() ){
                 points[i].releaseLock(this.cid);       //stealing a semaphore that has the same directions as this car
             }
@@ -72,7 +73,7 @@ public class Car extends Thread {
         // TODO Auto-generated method stub
 
         this.print("crossing");
-        points[0].releaseLock(this.cid);
+        points[0].releaseLock(this.cid);    //releaseing stop sign
         Points.isNext.releaseLock(this.cid);
         try {
             //sleep for the appropriate number of seconds based on the turn type
@@ -86,7 +87,8 @@ public class Car extends Thread {
 
     private void ExitIntersection(Directions dir) {
         for (int i = 1; i < points.length; i++) {
-            points[i].releaseLock(this.cid);
+            if(points[i].noPermit())
+                points[i].releaseLock(this.cid);
         }
         this.print("exiting");
     }

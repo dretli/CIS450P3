@@ -1,9 +1,12 @@
 import java.time.LocalTime;
 import java.time.ZoneId;
+import static java.time.temporal.ChronoUnit.MILLIS;
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
 
 public class Points {
 	public static ArrayList<ArrayList<Point>> points = new ArrayList<ArrayList<Point>>();
+        public static Point isNext = new Point(9,9);
 	public static LocalTime startTime;
 
 	public static void createPoints(){
@@ -25,4 +28,10 @@ public class Points {
 	public static void setStartTime() {
 		startTime = LocalTime.now(ZoneId.of("America/New_York"));
 	}
+        
+        public static String getTimeOffset(){
+            double offsetSec = (startTime.until(LocalTime.now(ZoneId.of("America/New_York")), MILLIS))/1000.0;
+            return String.format("%.1f", offsetSec);
+        }
+
 }

@@ -12,7 +12,7 @@ public class Point {
         this.index1 = index1;
         this.index2 = index2;
         this.semaphore = new Semaphore(1);
-        dir = new Directions('X','X');
+        dir = new Directions('X', 'X');
         //create semaphore?
     }
 
@@ -37,18 +37,24 @@ public class Point {
     public void releaseLock(int cid) {
 //        System.out.println("Semaphore " + index1 + "," + index2 + " RELEASED by car " + cid);
         semaphore.release();
-        
+
     }
 
     //to be used by car coming and going in the same directions
     public void interrupt() {
 
     }
-    
-    public boolean noPermit(){
-        if(semaphore.availablePermits() == 0)
+
+    public boolean noPermit() {
+        if (semaphore.availablePermits() == 0) {
             return true;
-        else
+        } else {
             return false;
+        }
+    }
+
+    public void numPermits() {
+        System.out.println("Semaphore " + index1 + "," + index2 + " has " + semaphore.availablePermits() + " available permits");
+                
     }
 }
