@@ -49,7 +49,7 @@ public class Car extends Thread{
 		//get the points needed,
 		//check to see if first point is available (stop sign point) before checking the rest
 		//once that one is available check to see if the rest of the points are available
-		int[] points = this.dir.pointsNeeded();
+		Point[] points = this.dir.pointsNeeded();   //get the neeeded points for the given directions
 		
 	}
 	private void CrossIntersection(Directions dir) {

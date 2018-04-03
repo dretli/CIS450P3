@@ -20,7 +20,7 @@ public class CarThread extends Thread {
     CarThread(Directions dir, int cid, int sleepTime) throws InterruptedException{
     	this.sleepTime = sleepTime;
         Thread.sleep(sleepTime);    //sleep before creating a new car object
-        car = new Car(dir, cid);
+        car = new Car(dir, cid, sleepTime);
         this.start();
     }
     
@@ -32,11 +32,6 @@ public class CarThread extends Thread {
                     + Thread.currentThread().getId()
                     + " is running with a cid of: "+ car.cid
                     + " Sleep Time is: " + (float)sleepTime/1000);
-            
-//            int[] points = car.dir.pointsNeeded();
-//            for(int i = 0; i < points.length; i++){
-//            	System.out.println(points[i] + " " + points[++i]);
-//            }
 
         } catch (Exception e) {
             // Throwing an exception

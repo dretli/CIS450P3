@@ -1,4 +1,6 @@
 
+
+
 //O-N, T-N, 0-0, 1-0, 2-0, 2-3, 4-2 (STRAIGHT)
 //O-N, T-E, 0-0, 1-0, 2-0, 4-3 (RIGHT)
 //O-N, T-W, 0-0, 1-0, 3-0, 3-1, 2-2, 4-1 (LEFT)
@@ -88,73 +90,85 @@ public class Directions {
 	
 	
 	//figure out which points need to be locked based on chart
-	public int[] pointsNeeded(){
+	public Point[] pointsNeeded(){
 		
 		if(dir_original == 'N'){
 			if(dir_target == 'N'){
 				//O-N, T-N, 0-0, 1-0, 2-0, 2-3, 4-2 (STRAIGHT)
-				int[] lock = {0, 0, 1, 0, 2, 0, 2, 3, 4, 2};
+//				Point[] lock = {0, 0,   1, 0,   2, 0,   2, 3,   4, 2};
+                                Point[] lock = {Points.points.get(0).get(0), Points.points.get(1).get(0), Points.points.get(2).get(0), Points.points.get(2).get(3), Points.points.get(4).get(2)};
 				return lock;
 			}
 			else if(dir_target == 'E'){
 				//O-N, T-E, 0-0, 1-0, 2-0, 4-3 (RIGHT)
-				int[] lock = {0, 0, 1, 0, 2, 0, 4, 3};
+//				int[] lock = {0, 0,  1, 0,  2, 0,  4, 3};
+                                Point[] lock = {Points.points.get(0).get(0), Points.points.get(1).get(0), Points.points.get(2).get(0), Points.points.get(4).get(3)};
 				return lock;
 			}
 			else if(dir_target == 'W'){
 				//O-N, T-W, 0-0, 1-0, 3-0, 3-1, 2-2, 4-1 (LEFT)
-				int[] lock = {0, 0, 1, 0, 3, 0, 3, 1, 2, 2, 4, 1};
+//				int[] lock = {0, 0,   1, 0,   3, 0,   3, 1,   2, 2,   4, 1};
+                                Point[] lock = {Points.points.get(0).get(0), Points.points.get(1).get(0), Points.points.get(3).get(0), Points.points.get(3).get(1), Points.points.get(2).get(2), Points.points.get(4).get(1)};
 				return lock;
 			}
 		}
 		else if(dir_original == 'S'){
 			if(dir_target == 'S'){
 				//O-S, T-S, 0-2, 1-2, 2-2, 1-1, 4-0 (STRAIGHT)
-				int[] lock = {0, 2, 1, 2, 2, 2, 1, 1, 4, 0};
+//				int[] lock = {0, 2,   1, 2,   2, 2,   1, 1,   4, 0};
+                                Point[] lock = {Points.points.get(0).get(2), Points.points.get(1).get(2), Points.points.get(2).get(2), Points.points.get(1).get(1), Points.points.get(4).get(0)};
 				return lock;
 			}
 			else if(dir_target == 'W'){
 				//O-S, T-W, 0-2, 1-2, 2-2, 4-1 (RIGHT)
-				int[] lock = {0, 2, 1, 2, 2, 2, 4, 1};
+//				int[] lock = {0, 2,   1, 2,   2, 2,   4, 1};
+                                Point[] lock = {Points.points.get(0).get(2), Points.points.get(1).get(2), Points.points.get(2).get(2), Points.points.get(4).get(1)};
 				return lock;
 			}
 			else if(dir_target == 'E'){
 				//O-S, T-E, 0-2, 1-2, 3-2, 3-3, 2-0, 4-3 (LEFT)
-				int[] lock = {0, 2, 1, 2, 3, 2, 3, 3, 2, 0, 4, 3};
+//				int[] lock = {0, 2,   1, 2,   3, 2,   3, 3,   2, 0,   4, 3};
+                                Point[] lock = {Points.points.get(0).get(2), Points.points.get(1).get(2), Points.points.get(3).get(2), Points.points.get(3).get(3), Points.points.get(2).get(0), Points.points.get(4).get(3)};
 				return lock;
 			}
 		}
 		else if(dir_original == 'E'){
 			if(dir_target == 'E'){
 				//O-E, T-E, 0-1, 1-1, 2-1, 1-0, 4-3 (STRAIGHT)
-				int[] lock = {0, 1, 1, 1, 2, 1, 1, 0, 4, 3};
+//				int[] lock = {0, 1,   1, 1,   2, 1,   1, 0,   4, 3};
+                                Point[] lock = {Points.points.get(0).get(1), Points.points.get(1).get(1), Points.points.get(2).get(1), Points.points.get(1).get(0), Points.points.get(4).get(3)};
 				return lock;
 			}
 			else if(dir_target == 'S'){
 				//O-E, T-S, 0-1, 1-1, 2-1, 4-0 (RIGHT)
-				int[] lock = {0, 1, 1, 1, 2, 1, 4, 0};
+//				int[] lock = {0, 1,    1, 1,    2, 1,    4, 0};
+                                Point[] lock = {Points.points.get(0).get(1), Points.points.get(1).get(1), Points.points.get(2).get(1), Points.points.get(4).get(0)};
 				return lock;
 			}
 			else if(dir_target == 'N'){
 				//O-E, T-N, 0-1, 1-1, 3-0, 3-3, 2-3, 4-2 (LEFT)
-				int[] lock = {0, 1, 1, 1, 3, 0, 3, 3, 2, 3, 4, 2};
+//				int[] lock = {0, 1,   1, 1,   3, 0,   3, 3,   2, 3,   4, 2};
+                                Point[] lock = {Points.points.get(0).get(1), Points.points.get(1).get(1), Points.points.get(3).get(0), Points.points.get(3).get(3), Points.points.get(2).get(3), Points.points.get(4).get(2)};
 				return lock;
 			}
 		}
 		else if(dir_original == 'W'){
 			if(dir_target == 'W'){
 				//O-W, T-W, 0-3, 1-3, 2-3, 1-2, 4-1 (STRAIGHT)
-				int[] lock = {0, 3, 1, 3, 2, 3, 1, 2, 4, 1};
+//				int[] lock = {0, 3,    1, 3,    2, 3,    1, 2,    4, 1};
+                                Point[] lock = {Points.points.get(0).get(3), Points.points.get(1).get(3), Points.points.get(2).get(3), Points.points.get(1).get(2), Points.points.get(4).get(1)};
 				return lock;
 			}
 			else if(dir_target == 'N'){
 				//O-W, T-N, 0-3, 1-3, 2-3, 4-2 (RIGHT)
-				int[] lock = {0, 3, 1, 3, 2, 3, 4, 2};
+//				int[] lock = {0, 3,   1, 3,   2, 3,   4, 2};
+                                Point[] lock = {Points.points.get(0).get(3), Points.points.get(1).get(3), Points.points.get(2).get(3), Points.points.get(4).get(2)};
 				return lock;
 			}
 			else if(dir_target == 'S'){
 				//O-W, T-S, 0-3, 1-3, 3-3, 3-0, 2-1, 4-0 (LEFT)
-				int[] lock = {0, 3, 1, 3, 3, 3, 3, 0, 2, 1, 4, 0};
+//				int[] lock = {0, 3,   1, 3,   3, 3,   3, 0,   2, 1,   4, 0};
+                                Point[] lock = {Points.points.get(0).get(3), Points.points.get(1).get(3), Points.points.get(3).get(3), Points.points.get(3).get(0), Points.points.get(2).get(1), Points.points.get(4).get(0)};
 				return lock;
 			}
 		}

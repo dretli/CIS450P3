@@ -4,6 +4,7 @@ public class Point {
 	public int index1;
 	public int index2;
 	private Semaphore semaphore;
+	Directions dir;
 	
 	Point(int index1, int index2){
 		this.index1 = index1;
@@ -15,9 +16,12 @@ public class Point {
 	public boolean tryAcquire(){
 		return semaphore.tryAcquire();
 	}
-	public void acquireLock(int cid){
+	public void acquireLock(int cid, Directions dir){
 		try {
 			semaphore.acquire();
+			//save the directions of the car who has the lock so if the next car 
+			//is going the same they can cross
+			this.dir = dir;
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

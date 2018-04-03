@@ -1,5 +1,4 @@
 
-import java.util.ArrayList;
 import java.time.LocalTime;
 import java.time.ZoneId;
 //O-N, T-N, 0-0, 1-0, 2-0, 2-3, 4-2 (STRAIGHT)
@@ -34,14 +33,14 @@ public class tc {
 	public static void createCarThreads() throws InterruptedException {
         System.out.println("Creating Car Threads Now");
         Points.setStartTime();//set the start time
-        CarThread carThread0 = new CarThread(new Directions('N','N'), 0, 1100);
-        CarThread carThread1 = new CarThread(new Directions('N','N'), 1, 2000 - 1100);
-        CarThread carThread2 = new CarThread(new Directions('N','W'), 2, 3300 - 2000);
-        CarThread carThread3 = new CarThread(new Directions('S','S'), 3, 3500 - 3300);
-        CarThread carThread4 = new CarThread(new Directions('S','E'), 4, 4200 - 3500);
-        CarThread carThread5 = new CarThread(new Directions('N','N'), 5, 4400 - 4200);
-        CarThread carThread6 = new CarThread(new Directions('E','N'), 6, 5700 - 4400);
-        CarThread carThread7 = new CarThread(new Directions('W','N'), 7, 5900 - 5700);
+        Car carThread0 = new Car(new Directions('N','N'), 0, 1100);
+        Car carThread1 = new Car(new Directions('N','N'), 1, 2000 - 1100);
+        Car carThread2 = new Car(new Directions('N','W'), 2, 3300 - 2000);
+        Car carThread3 = new Car(new Directions('S','S'), 3, 3500 - 3300);
+        Car carThread4 = new Car(new Directions('S','E'), 4, 4200 - 3500);
+        Car carThread5 = new Car(new Directions('N','N'), 5, 4400 - 4200);
+        Car carThread6 = new Car(new Directions('E','N'), 6, 5700 - 4400);
+        Car carThread7 = new Car(new Directions('W','N'), 7, 5900 - 5700);
     }
 
 }
