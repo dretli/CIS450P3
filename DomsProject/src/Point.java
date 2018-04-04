@@ -7,12 +7,14 @@ public class Point {
     public int index2;
     private Semaphore semaphore;
     Directions dir;
+    int cid;
 
     Point(int index1, int index2) {
         this.index1 = index1;
         this.index2 = index2;
         this.semaphore = new Semaphore(1);
-        dir = new Directions('X', 'X');
+        this.dir = new Directions('X', 'X');
+        this.cid = -1;
         //create semaphore?
     }
 
@@ -28,6 +30,7 @@ public class Point {
             //save the directions of the car who has the lock so if the next car 
             //is going the same they can cross
             this.dir = dir;
+            this.cid = cid;
         } catch (InterruptedException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -52,7 +55,9 @@ public class Point {
             return false;
         }
     }
-
+    public int lockedBy(){
+    	return this.cid;
+    }
     public void numPermits() {
         System.out.println("Semaphore " + index1 + "," + index2 + " has " + semaphore.availablePermits() + " available permits");
                 
